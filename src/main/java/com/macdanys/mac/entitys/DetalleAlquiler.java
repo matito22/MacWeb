@@ -13,7 +13,10 @@ public class DetalleAlquiler {
     @GeneratedValue(strategy = GenerationType.IDENTITY)//Indica que se autoincrementa el valor por la BD
     private int idDetalle_Alquiler;
 
+    @Column(nullable = false)
     private Integer cantidad;
+
+    @Column(nullable = false)
     private Float precioUnitario;
 
     @ManyToOne//Cada detalle pertenece a un alquiler.

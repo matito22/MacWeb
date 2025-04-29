@@ -1,14 +1,21 @@
-package com.example.macdanyapp.entitys;
+package com.macdanys.mac.entitys;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name="historial_alquileres")
 public class HistorialAlquileres {
 
+    @Id//Marca el campo idHistorialAlquiler como la clave primaria de la tabla.
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//Indica que se autoincrementa el valor por la BD
     private Integer idHistorialAlquiler;
-    private Alquiler alquiler;
-    private Cliente cliente;
+
+    
+    private Integer idAlquiler;
+    private String nombreCliente;
+    private String apellidoCliente;
     private LocalDate fechaComienzo;
     private LocalDate fechaFinalizacion;
     private LocalTime horaComienzo;
@@ -16,14 +23,15 @@ public class HistorialAlquileres {
     private Integer diasAlquiler;
     private Float costoDelivery;
     private float totalAlquiler;
-    private Multa multa;
+    private float multa;
 
     public HistorialAlquileres() {}
 
-    public HistorialAlquileres(Integer idHistorialAlquiler, Alquiler alquiler, Cliente cliente, LocalDate fechaComienzo, LocalDate fechaFinalizacion, LocalTime horaComienzo, LocalTime horaFinalizacion, Integer diasAlquiler, Float costoDelivery, float totalAlquiler, Multa multa) {
+    public HistorialAlquileres(Integer idHistorialAlquiler, Integer idAlquiler, String nombreCliente,String apellidoCliente, LocalDate fechaComienzo, LocalDate fechaFinalizacion, LocalTime horaComienzo, LocalTime horaFinalizacion, Integer diasAlquiler, Float costoDelivery, float totalAlquiler, Float multa) {
         this.idHistorialAlquiler = idHistorialAlquiler;
-        this.alquiler = alquiler;
-        this.cliente = cliente;
+        this.idAlquiler = idAlquiler;
+        this.nombreCliente = nombreCliente;
+        this.apellidoCliente=apellidoCliente;
         this.fechaComienzo = fechaComienzo;
         this.fechaFinalizacion = fechaFinalizacion;
         this.horaComienzo = horaComienzo;
@@ -34,9 +42,10 @@ public class HistorialAlquileres {
         this.multa = multa;
     }
 
-    public HistorialAlquileres(Alquiler alquiler, Cliente cliente, LocalDate fechaComienzo, LocalDate fechaFinalizacion, LocalTime horaComienzo, LocalTime horaFinalizacion, Integer diasAlquiler, Float costoDelivery, float totalAlquiler, Multa multa) {
-        this.alquiler = alquiler;
-        this.cliente = cliente;
+    public HistorialAlquileres( Integer idAlquiler, String nombreCliente,String apellidoCliente, LocalDate fechaComienzo, LocalDate fechaFinalizacion, LocalTime horaComienzo, LocalTime horaFinalizacion, Integer diasAlquiler, Float costoDelivery, float totalAlquiler, Float multa) {
+        this.idAlquiler = idAlquiler;
+        this.nombreCliente = nombreCliente;
+        this.apellidoCliente=apellidoCliente;
         this.fechaComienzo = fechaComienzo;
         this.fechaFinalizacion = fechaFinalizacion;
         this.horaComienzo = horaComienzo;
@@ -55,21 +64,15 @@ public class HistorialAlquileres {
         this.idHistorialAlquiler = idHistorialAlquiler;
     }
 
-    public Alquiler getAlquiler() {
-        return alquiler;
+    public Integer getAlquiler() {
+        return idAlquiler;
     }
 
-    public void setAlquiler(Alquiler alquiler) {
-        this.alquiler = alquiler;
+    public void setAlquiler(Integer idAlquiler) {
+        this.idAlquiler = idAlquiler;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
+   
 
     public LocalDate getFechaComienzo() {
         return fechaComienzo;
@@ -127,28 +130,48 @@ public class HistorialAlquileres {
         this.totalAlquiler = totalAlquiler;
     }
 
-    public Multa getMulta() {
-        return multa;
+    public Integer getIdAlquiler() {
+        return idAlquiler;
     }
 
-    public void setMulta(Multa multa) {
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    public String getApellidoCliente() {
+        return apellidoCliente;
+    }
+
+    public void setIdAlquiler(Integer idAlquiler) {
+        this.idAlquiler = idAlquiler;
+    }
+
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
+    }
+
+    public void setApellidoCliente(String apellidoCliente) {
+        this.apellidoCliente = apellidoCliente;
+    }
+
+    public void setMulta(float multa) {
         this.multa = multa;
+    }
+
+    public float getMulta() {
+        return multa;
     }
 
     @Override
     public String toString() {
-        return "HistorialAlquileres{" +
-                "idHistorialAlquiler=" + idHistorialAlquiler +
-                ", alquiler=" + alquiler.getIdAlquiler() +
-                ", cliente=" + cliente.getIdCliente() +
-                ", fechaComienzo=" + fechaComienzo +
-                ", fechaFinalizacion=" + fechaFinalizacion +
-                ", horaComienzo=" + horaComienzo +
-                ", horaFinalizacion=" + horaFinalizacion +
-                ", diasAlquiler=" + diasAlquiler +
-                ", costoDelivery=" + costoDelivery +
-                ", totalAlquiler=" + totalAlquiler +
-                ", multa=" + multa +
-                '}';
+        return "HistorialAlquileres [idHistorialAlquiler=" + idHistorialAlquiler + ", idAlquiler=" + idAlquiler
+                + ", nombreCliente=" + nombreCliente + ", apellidoCliente=" + apellidoCliente + ", fechaComienzo="
+                + fechaComienzo + ", fechaFinalizacion=" + fechaFinalizacion + ", horaComienzo=" + horaComienzo
+                + ", horaFinalizacion=" + horaFinalizacion + ", diasAlquiler=" + diasAlquiler + ", costoDelivery="
+                + costoDelivery + ", totalAlquiler=" + totalAlquiler + ", multa=" + multa + "]";
     }
+
+    
+
+  
 }
