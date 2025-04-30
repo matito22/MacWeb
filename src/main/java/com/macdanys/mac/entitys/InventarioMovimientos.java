@@ -1,7 +1,6 @@
 package com.macdanys.mac.entitys;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import jakarta.persistence.*;
 
 @Entity
