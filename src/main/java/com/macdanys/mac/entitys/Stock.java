@@ -1,8 +1,19 @@
-package com.example.macdanyapp.entitys;
+package com.macdanys.mac.entitys;
 
+import jakarta.persistence.*; // o javax.persistence.* dependiendo de tu versión
+
+@Entity
+@Table(name = "stock")
 public class Stock {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idStock;
     private Integer cantidadDisponible;
+
+
+    @OneToOne
+    @JoinColumn(name = "vajilla_id",nullable = false,unique = true)
     private Vajilla vajilla;
 
 

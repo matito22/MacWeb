@@ -1,7 +1,16 @@
-package com.example.macdanyapp.entitys;
+package com.macdanys.mac.entitys;
 
+import jakarta.persistence.*; // o javax.persistence.* dependiendo de tu versión
+
+
+@Entity
+@Table(name = "proveedor")
 public class Proveedor {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idproveedor;
+
     private String nombre;
     private String contacto;
     private Float costoAdquisicion;

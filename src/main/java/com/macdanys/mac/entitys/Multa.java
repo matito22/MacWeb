@@ -1,13 +1,22 @@
-package com.example.macdanyapp.entitys;
+package com.macdanys.mac.entitys;
+
+import jakarta.persistence.*; // o javax.persistence.* dependiendo de tu versión
 
 import java.time.LocalDate;
 
-import com.example.macdanyapp.entitys.Alquiler;
-
+@Entity
+@Table(name="multa")
 public class Multa {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMulta;
+
     private Float monto;
     private LocalDate fecha;
+
+    @OneToOne
+    @JoinColumn(name="alquiler_id",nullable = false)
     private Alquiler alquiler;
 
     public Multa() {}
@@ -24,9 +33,6 @@ public class Multa {
         this.fecha = fecha;
         this.alquiler = alquiler;
     }
-
-
-
 
 
     public Integer getIdMulta() {

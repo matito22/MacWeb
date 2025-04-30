@@ -1,10 +1,20 @@
-package com.example.macdanyapp.entitys;
+package com.macdanys.mac.entitys;
 
 import java.time.LocalDate;
+import jakarta.persistence.*; // o javax.persistence.* dependiendo de tu versión
 
+@Entity
+@Table(name = "pago")
 public class Pago {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPago;
-    private Alquiler alquiler;
+
+    @ManyToOne
+    @JoinColumn(name = "id_alquiler")//Esta relacion es muchos a uno porque un alquiler puede tener varios tipos de pago, pero un pago pertenece siempre a un solo alquiler
+    private Alquiler alquiler;//No es necesario que en la entidad alquiler exista una relacion con pago, ya que con el ID de alquiler, podemos obtener los pagos del mismo
+
     private Float monto;
     private Float montoAdelantado;
     private String tipoPago;
