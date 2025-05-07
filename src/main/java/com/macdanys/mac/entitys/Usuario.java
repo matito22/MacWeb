@@ -1,11 +1,26 @@
-package com.example.macdanyapp.entitys;
+package com.macdanys.mac.entitys;
 
-import java.util.Objects;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "usuario")
 public class Usuario {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUsuario;
+
     private String nombreDeUsuario;
     private String password;
+
+
+    @Enumerated(EnumType.STRING)//Convierte el enum estado, a String en la BD
     private TipoDeUsuario tipoDeUsuario;
 
 

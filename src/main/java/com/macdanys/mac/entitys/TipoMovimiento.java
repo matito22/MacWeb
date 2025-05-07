@@ -1,4 +1,4 @@
-package com.example.macdanyapp.entitys;
+package com.macdanys.mac.entitys;
 
 public enum TipoMovimiento {
     entrada,

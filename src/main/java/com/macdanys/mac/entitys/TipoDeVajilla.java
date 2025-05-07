@@ -1,7 +1,20 @@
-package com.example.macdanyapp.entitys;
+package com.macdanys.mac.entitys;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tipo_de_vajilla")
 public class TipoDeVajilla {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTipoDeVajilla;
+
+    
     private String nombreTipoDeVajilla;
 
 

@@ -1,11 +1,29 @@
-package com.example.macdanyapp.entitys;
+package com.macdanys.mac.entitys;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "vajilla")
 public class Vajilla {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idVajilla;
+
+
     private String modelo;
     private String color;
     private String tamaño;
     private Float precioIndividual;
+
+    @OneToOne
+    @JoinColumn(name = "id_tipo_de_vajilla", nullable = false)
     private TipoDeVajilla tipoDeVajilla;
 
     public Vajilla() {}
