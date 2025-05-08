@@ -1,70 +1,35 @@
-package com.example.macdanyapp.services;
+package com.macdanys.mac.services;
+import java.util.List;
+import java.util.Optional;
 
-import com.example.macdanyapp.entitys.Alquiler;
-import com.example.macdanyapp.entitys.Cliente;
-import com.example.macdanyapp.entitys.Multa;
-import com.example.macdanyapp.repositories.ClienteDAO;
-import com.example.macdanyapp.repositories.MultaDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import java.sql.SQLException;
-import java.time.LocalDate;
+import com.macdanys.mac.entitys.InventarioMovimientos;
+import com.macdanys.mac.entitys.Multa;
+import com.macdanys.mac.repositories.MultaDAO;
+
 
 public class MultaService {
-    MultaDAO multaDAO = new MultaDAO();
-    Multa multaExistente;
+     @Autowired
+    private MultaDAO multaDAO;
 
-    public MultaService() {
-        this.multaDAO = new MultaDAO();
+     public List<Multa> traerTodos() {
+        return multaDAO.findAll();
     }
 
-    public void insertMulta(Multa multa, Alquiler alquiler) throws SQLException {
-        try{
-            if(multaDAO.traerMulta(alquiler.getIdAlquiler()) != null){
-                System.out.println("La multa ya existe");
-            }else{
-                multaDAO.insertMulta(multa, alquiler);
-                System.out.println("La multa se agrego correctamente");
-            }
-
-        } catch (SQLException e) {
-            System.err.println("Error al insertar la multa: " + e.getMessage());
-        }
-
+    public Optional<Multa> traerPorId(Integer id) {
+        return multaDAO.findById(id);
     }
 
-
-    public Multa traerMulta(long idAlquiler) throws SQLException {
-
-        try{
-            multaExistente=multaDAO.traerMulta(idAlquiler);
-            if(multaExistente!=null){
-                System.out.println("Multa encontrada: " + multaExistente);
-            }else{
-                System.out.println("Multa no encontrada.");
-            }
-
-        } catch (SQLException e) {
-            System.err.println("Error al traer la multa: " + e.getMessage());
-        }
-
-        return multaExistente;
+    public Multa cMulta (Multa Multa) {
+        return multaDAO.save(Multa);
     }
 
-
-    public void eliminarMulta(long idMulta,Alquiler alquiler) throws SQLException {
-        try{
-            if(multaDAO.traerMulta(alquiler.getIdAlquiler())!=null){
-                multaDAO.eliminarMulta(idMulta,alquiler);
-            }else{
-                System.out.println("Multa no encontrada");
-            }
-        }catch(SQLException e){
-            System.err.println("Error al eliminar la multa: " + e.getMessage());
-        }
+    public Multa modMulta(Multa Multa) {
+        return multaDAO.save(Multa);
     }
 
-    public void modificarMulta(LocalDate nuevaFecha, Float nuevoMonto, Integer idMulta) throws SQLException {
-       multaDAO.modificarMulta(nuevaFecha,nuevoMonto,idMulta);
+    public void eliminarMulta(Integer id) {
+        multaDAO.deleteById(id);
     }
-
 }

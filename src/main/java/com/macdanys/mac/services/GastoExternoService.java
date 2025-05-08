@@ -1,72 +1,32 @@
-package com.example.macdanyapp.services;
+package com.macdanys.mac.services;
+import java.util.List;
+import java.util.Optional;
 
-import com.example.macdanyapp.entitys.GastoExterno;
-import com.example.macdanyapp.entitys.Proveedor;
-import com.example.macdanyapp.repositories.GastoExternoDAO;
-import com.example.macdanyapp.repositories.ProveedorDAO;
-
-import java.sql.SQLException;
-import java.time.LocalDate;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.macdanys.mac.entitys.GastoExterno;
+import com.macdanys.mac.repositories.GastoExternoDAO;
 
 public class GastoExternoService {
-    GastoExternoDAO gastoExternoDAO;
-    GastoExterno gastoExternoExistente;
+      @Autowired
+    private GastoExternoDAO gastoExternoDAO;
 
-    public GastoExternoService() {
-        this.gastoExternoDAO = new GastoExternoDAO(); // Inicializas proveedorDao
+     public List<GastoExterno> traerTodos() {
+        return gastoExternoDAO.findAll();
     }
 
-
-
-    public void insertGastoExterno(GastoExterno gastoExterno) throws SQLException {
-        try{
-            if(gastoExternoDAO.traerGastoExterno(gastoExterno.getAlquiler().getIdAlquiler()) != null){
-                System.out.println("El gasto externo ya existe");
-            }else{
-                gastoExternoDAO.insertGastoExterno(gastoExterno);
-                System.out.println("El gasto externo se agrego correctamente");
-            }
-
-        } catch (SQLException e) {
-            System.err.println("Error al insertar el gasto externo: " + e.getMessage());
-        }
-
+    public Optional<GastoExterno> traerPorId(Integer id) {
+        return gastoExternoDAO.findById(id);
     }
 
-
-    public GastoExterno traerGastoExterno(long idAlquiler) throws SQLException {
-
-        try{
-            gastoExternoExistente=gastoExternoDAO.traerGastoExterno(idAlquiler);
-            if(gastoExternoExistente!=null){
-                System.out.println("Gasto externo encontrado: " + gastoExternoExistente);
-            }else{
-                System.out.println("Gasto externo no encontrado.");
-            }
-
-        } catch (SQLException e) {
-            System.err.println("Error al traer el gasto externo: " + e.getMessage());
-        }
-
-        return gastoExternoExistente;
+    public GastoExterno cGastoExterno (GastoExterno gastoExterno) {
+        return gastoExternoDAO.save(gastoExterno);
     }
 
-
-
-    public void eliminarGastoExterno(long idAlquiler) throws SQLException {
-        try{
-            if(gastoExternoDAO.traerGastoExterno(idAlquiler)!=null){
-                gastoExternoDAO.eliminarGastoExterno(idAlquiler);
-            }else{
-                System.out.println("Gasto externo no encontrado.");
-            }
-        }catch(SQLException e){
-            System.err.println("Error al eliminar el gasto externo: " + e.getMessage());
-        }
-
+    public GastoExterno modGastoExterno(GastoExterno gastoExterno) {
+        return gastoExternoDAO.save(gastoExterno);
     }
 
-    public void modificarProveedor(int idAlquiler, String nuevaDescripcion, Float nuevoMonto, LocalDate nuevaFecha) throws SQLException {
-        gastoExternoDAO.modificarGastoExterno(idAlquiler, nuevaDescripcion, nuevoMonto, nuevaFecha);
+    public void eliminarGastoExterno(Integer id) {
+        gastoExternoDAO.deleteById(id);
     }
 }

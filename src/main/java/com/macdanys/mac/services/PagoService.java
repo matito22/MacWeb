@@ -1,13 +1,11 @@
-package com.example.macdanyapp.services;
+package com.macdanys.mac.services;
+import java.util.List;
+import java.util.Optional;
 
-import com.example.macdanyapp.entitys.Alquiler;
-import com.example.macdanyapp.entitys.Multa;
-import com.example.macdanyapp.entitys.Pago;
-import com.example.macdanyapp.repositories.MultaDAO;
-import com.example.macdanyapp.repositories.PagoDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import java.sql.SQLException;
-import java.time.LocalDate;
+import com.macdanys.mac.entitys.Pago;
+import com.macdanys.mac.repositories.PagoDAO;
 
 public class PagoService {
     PagoDAO pagoDAO = new PagoDAO();

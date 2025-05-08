@@ -1,68 +1,35 @@
-package com.example.macdanyapp.services;
+package com.macdanys.mac.services;
+import java.util.List;
+import java.util.Optional;
 
-import com.example.macdanyapp.entitys.InventarioMovimientos;
-import com.example.macdanyapp.repositories.InventarioMovimientosDAO;
-
-import java.sql.SQLException;
-import java.time.LocalDate;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.macdanys.mac.entitys.InventarioMovimientos;
+import com.macdanys.mac.repositories.InventarioMovimientosDAO;
 
 public class InventarioMovimientosService {
 
-    InventarioMovimientosDAO inventarioMovimientosDAO;
-    InventarioMovimientos inventarioMovimientos;
+    @Autowired
+    private InventarioMovimientosDAO inventarioMovimientosDAO;
 
-    public InventarioMovimientosService() {
-        this.inventarioMovimientosDAO= new InventarioMovimientosDAO(); // Inicializas clienteDAO
+     public List<InventarioMovimientos> traerTodos() {
+        return inventarioMovimientosDAO.findAll();
     }
 
-    public void insertarInventarioMovimientos(InventarioMovimientos inventarioMovimientos) throws SQLException {
-        try{
-            if(inventarioMovimientosDAO.traerInventarioMovimientos(inventarioMovimientos.getVajilla().getIdVajilla()) != null){
-                System.out.println("El inventario movimiento ya existe");
-            }else{
-                inventarioMovimientosDAO.insertInventarioMovimientos(inventarioMovimientos);
-                System.out.println("El inventario de movimiento se agrego correctamente");
-            }
-
-        } catch (SQLException e) {
-            System.err.println("Error al insertar el inventario de movimiento: " + e.getMessage());
-        }
-
+    public Optional<InventarioMovimientos> traerPorId(Integer id) {
+        return inventarioMovimientosDAO.findById(id);
     }
 
-
-    public InventarioMovimientos traerInventarioMovimientos(long idVajilla) throws SQLException {
-
-        try{
-            inventarioMovimientos=inventarioMovimientosDAO.traerInventarioMovimientos(idVajilla);
-            if(inventarioMovimientos!=null){
-                System.out.println("Inventario de movimientos encontrado: " + inventarioMovimientos);
-            }else{
-                System.out.println("Inventario de movimientos no encontrado.");
-            }
-
-        } catch (SQLException e) {
-            System.err.println("Error al traer el inventario de movimientos: " + e.getMessage());
-        }
-
-        return inventarioMovimientos;
+    public InventarioMovimientos cInventarioMovimientos (InventarioMovimientos inventarioMovimientos) {
+        return inventarioMovimientosDAO.save(inventarioMovimientos);
     }
 
-
-    public void eliminarInventarioMovimientos(long idVajilla) throws SQLException {
-        try{
-            if(inventarioMovimientosDAO.traerInventarioMovimientos(idVajilla)!=null){
-                inventarioMovimientosDAO.eliminarInventarioMovimientos(idVajilla);
-            }else{
-                System.out.println("Inventario de movimientos no encontrado");
-            }
-        }catch(SQLException e){
-            System.err.println("Error al eliminar el inventario de movimientos: " + e.getMessage());
-        }
+    public InventarioMovimientos modInventarioMovimientos(InventarioMovimientos inventarioMovimientos) {
+        return inventarioMovimientosDAO.save(inventarioMovimientos);
     }
 
-    public void modificarInventarioMovimientos(int idVajilla, int nuevaCantidad, String nuevoTipoMovimiento, LocalDate nuevaFechaDeMovimiento) throws SQLException {
-        inventarioMovimientosDAO.modificarInventarioMovimientos(idVajilla,nuevaCantidad,nuevoTipoMovimiento,nuevaFechaDeMovimiento);
+    public void eliminarInventarioMovimientos(Integer id) {
+        inventarioMovimientosDAO.deleteById(id);
     }
+
 
 }
