@@ -1,81 +1,35 @@
-package com.example.macdanyapp.services;
+package com.macdanys.mac.services;
+import java.util.List;
+import java.util.Optional;
 
-import com.example.macdanyapp.entitys.Proveedor;
-import com.example.macdanyapp.repositories.ProveedorDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import java.sql.SQLException;
+import com.macdanys.mac.entitys.Proveedor;
+
+import com.macdanys.mac.repositories.ProveedorDAO;
 
 public class ProveedorService {
-    ProveedorDAO proveedorDao;
-    Proveedor proveedorExistente;
+ @Autowired
+    private ProveedorDAO ProveedorDAO;
 
-    public ProveedorService() {
-        this.proveedorDao = new ProveedorDAO(); // Inicializas proveedorDao
+     public List<Proveedor> traerTodos() {
+        return ProveedorDAO.findAll();
     }
 
-    public void insertProveedor(Proveedor proveedor) throws SQLException {
-        try{
-            if(proveedorDao.traerProveedorPorNombre(proveedor.getNombre()) != null){
-                System.out.println("El Proveedor ya existe");
-            }else{
-                proveedorDao.insertProveedor(proveedor);
-                System.out.println("El proveedor se agrego correctamente");
-            }
-
-        } catch (SQLException e) {
-            System.err.println("Error al insertar el proveedor: " + e.getMessage());
-        }
-
+    public Optional<Proveedor> traerPorId(Integer id) {
+        return ProveedorDAO.findById(id);
     }
 
-
-    public Proveedor traerProveedor(long idProveedor) throws SQLException {
-
-        try{
-            proveedorExistente=proveedorDao.traerProveedor(idProveedor);
-            if(proveedorExistente!=null){
-                System.out.println("Proveedor encontrado: " + proveedorExistente);
-            }else{
-                System.out.println("Proveedor no encontrado.");
-            }
-
-        } catch (SQLException e) {
-            System.err.println("Error al traer el proveedor: " + e.getMessage());
-        }
-
-        return proveedorExistente;
+    public Proveedor cProveedor (Proveedor Proveedor) {
+        return ProveedorDAO.save(Proveedor);
     }
 
-    public Proveedor traerProveedorPorNombre(String nombreProveedor) throws SQLException {
-        try{
-            proveedorExistente=proveedorDao.traerProveedorPorNombre(nombreProveedor);
-            if(proveedorExistente!=null){
-                System.out.println("Proveedor encontrado: " + proveedorExistente);
-            }else{
-                System.out.println("Proveedor no encontrado.");
-            }
-
-
-        } catch (SQLException e) {
-            System.err.println("Error al traer el proveedor: " + e.getMessage());
-        }
-        return proveedorExistente;
+    public Proveedor modProveedor(Proveedor Proveedor) {
+        return ProveedorDAO.save(Proveedor);
     }
 
-    public void eliminarProveedor(long idProveedor) throws SQLException {
-        try{
-            if(proveedorDao.traerProveedor(idProveedor)!=null){
-                proveedorDao.eliminarProveedor(idProveedor);
-            }else{
-                System.out.println("Proveedor no encontrado.");
-            }
-        }catch(SQLException e){
-            System.err.println("Error al eliminar el proveedor: " + e.getMessage());
-        }
-        proveedorDao.eliminarProveedor(idProveedor);
+    public void eliminarProveedor(Integer id) {
+        ProveedorDAO.deleteById(id);
     }
-
-    public void modificarProveedor(Long idCliente,String nuevoNombre,String contacto) throws SQLException {
-        proveedorDao.modificarProveedor(idCliente,nuevoNombre,contacto);
-    }
+  
 }

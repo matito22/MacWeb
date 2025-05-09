@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface TipoDeVajillaDAO extends JpaRepository<TipoDeVajilla,Integer>{
 
-    public List<TipoDeVajilla> findByTipoDeVajillas();
+   
 } 
