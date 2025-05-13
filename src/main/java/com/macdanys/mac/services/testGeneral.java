@@ -1,6 +1,5 @@
-package com.example.macdanyapp.services;
+package com.macdanys.mac.services;
 
-import com.example.macdanyapp.entitys.*;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -206,7 +205,7 @@ public class testGeneral
 
         //INSERTAR USUARIO(Funciona)
         UsuarioService usuarioService = new UsuarioService();
-        Usuario usuario=new Usuario("mati","1234",TipoDeUsuario.ADMINISTRADOR);
+        //Usuario usuario=new Usuario("mati","1234",TipoDeUsuario.ADMINISTRADOR);
         //usuarioService.insertUsuario(usuario);
 
 
@@ -250,7 +249,7 @@ public class testGeneral
         //vajillaService.traerListaVajilla();
         //tipoDeVajillaService.traerTipoDeVajillaPorId(1);
 
-        alquilerService.modificarEstadoAlquiler(Estado.ACTIVO,10);
+        //alquilerService.modificarEstadoAlquiler(Estado.ACTIVO,10);
 
 
     }
