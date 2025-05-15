@@ -1,6 +1,7 @@
 package com.macdanys.mac.services;
 
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +19,12 @@ public class AlquilerService {
         return alquilerDao.findAll();
     }
 
-    public Optional<Alquiler> traerPorId(Integer id) {
+    public List<Alquiler>findByFechaOEstado(LocalDate desde, LocalDate hasta,Estado estado){
+        return alquilerDao.findByFechaOEstado(desde,hasta,estado);
+    }
+    
+
+    public Optional<Alquiler> findById(Integer id) {
         return alquilerDao.findById(id);
     }
 
@@ -37,5 +43,14 @@ public class AlquilerService {
     public void eliminarAlquiler(Integer id) {
         alquilerDao.deleteById(id);
     }
+
+    public void modificarEstadoAlquiler(Estado nuevoEstado, Integer id) {
+    Optional<Alquiler> alquilerOptional = alquilerDao.findById(id);
+    if (alquilerOptional.isPresent()) {
+        Alquiler alquiler = alquilerOptional.get();
+        alquiler.setEstado(nuevoEstado);
+        alquilerDao.save(alquiler);
+    }
+}
 
 }
