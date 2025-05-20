@@ -11,13 +11,13 @@ public class GastoExterno {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idGastoExterno;
 
-    @Column(nullable = false)
+    @Column(name="descripcion",nullable = false)
     private String descripcion;
 
-    @Column(nullable = false)
+    @Column(name="monto",nullable = false)
     private Float monto;
 
-    @Column(nullable = false)
+    @Column(name="fecha",nullable = false)
     private LocalDate fecha;
 
     @ManyToOne//Cada gasto externo pertenece a un alquiler.

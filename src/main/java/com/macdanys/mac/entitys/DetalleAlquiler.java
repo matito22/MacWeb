@@ -16,7 +16,7 @@ public class DetalleAlquiler {
     @Column(nullable = false)
     private Integer cantidad;
 
-    @Column(nullable = false)
+    @Column(name = "precio_unitario",nullable = false)
     private Float precioUnitario;
 
     @ManyToOne//Cada detalle pertenece a un alquiler.

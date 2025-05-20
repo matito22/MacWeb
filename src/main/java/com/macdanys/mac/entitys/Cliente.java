@@ -11,16 +11,16 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)//Indica que se autoincrementa el valor por la BD
     private Integer idCliente;
 
-    @Column(nullable = false)
+    @Column(name="nombre",nullable = false)
     private String nombre;
 
-    @Column(nullable = false)
+    @Column(name="apellido",nullable = false)
     private String apellido;
 
-    @Column(nullable = false)
+    @Column(name="numeroDeTelefono",nullable = false)
     private String telefono;
     
-    @Column(nullable = false)
+    @Column(name="domicilio",nullable = false)
     private String domicilio;
 
 

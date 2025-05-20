@@ -17,13 +17,15 @@ public class Alquiler implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)//Indica que se autoincrementa el valor por la BD
     private Integer idAlquiler;
 
-  
+    @Column(name = "fecha_comienzo")
     private LocalDate fechaComienzo;
 
+    @Column(name = "fecha_finalizacion")
     private LocalDate fechaFinalizacion;
 
-    
+    @Column(name = "hora_comienzo")
     private LocalTime horaComienzo;
+    @Column(name = "hora_finalizacion")
     private LocalTime horaFinalizacion;
 
     @ManyToOne// Indica que hay una relacion muchos a uno , es decir un cliente puede tener muchos alquileres
@@ -32,9 +34,9 @@ public class Alquiler implements Serializable {
     
     @Column(nullable = false)
     private Integer diasAlquiler;
-    
+    @Column(name = "costo_delivery")
     private Float costoDelivery;
-    @Column(nullable = false)
+    @Column(name = "total_alquiler", nullable = false)
     private float totalAlquiler;
 
     @Enumerated(EnumType.STRING)//Convierte el enum estado, a String en la BD
@@ -46,6 +48,7 @@ public class Alquiler implements Serializable {
     @OneToOne(mappedBy = "alquiler")// Relacion uno a uno entre alquiler y multa, indica que la clave foranea no la tiene alquiler, la tiene multa
     private Multa multa;
 
+    @Column(name = "etiqueta")
     private String etiqueta;
 
     // Constructores, getters, setters y toString acá
