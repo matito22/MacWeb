@@ -13,7 +13,7 @@ public class InventarioMovimientos {
     @ManyToOne // Relación Muchos a Uno con Vajilla, muchos movimientos estan asociados a una vajilla, pero una vajilla puede tener muchos movimientos
     @JoinColumn(name = "vajilla_id", referencedColumnName = "idVajilla") // Relaciona con la columna vajilla_id en la BD
     private Vajilla vajilla;
-
+    @Column(name = "cantidad")
     private int cantidad;
 
     
@@ -24,7 +24,9 @@ public class InventarioMovimientos {
     private String usuario;
 
     @Enumerated(EnumType.STRING) // Para almacenar el valor del enum en la BD como un String
+    @Column(name = "tipo_movimiento")
     private TipoMovimiento tipoMovimiento;
+    @Column(name = "fecha_de_movimiento")
     private LocalDate fechaDeMovimiento;
 
     // Relación ManyToOne con Alquiler (con ON DELETE SET NULL)

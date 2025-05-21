@@ -14,33 +14,37 @@ public class Pago {
     @ManyToOne
     @JoinColumn(name = "id_alquiler")//Esta relacion es muchos a uno porque un alquiler puede tener varios tipos de pago, pero un pago pertenece siempre a un solo alquiler
     private Alquiler alquiler;//No es necesario que en la entidad alquiler exista una relacion con pago, ya que con el ID de alquiler, podemos obtener los pagos del mismo
-
+    @Column(name="monto")
     private Float monto;
+    @Column(name="monto_adelantado")
     private Float montoAdelantado;
+    @Column(name="tipo_pago")
     private String tipoPago;
+    @Column(name="fecha_de_pago")
     private LocalDate fechaDePago;
-    private LocalDate fehcaDePagoAdelantado;
+    @Column(name="fecha_de_pago_adelantado")
+    private LocalDate fechaDePagoAdelantado;
 
 
     public Pago(){}
 
-    public Pago(Alquiler alquiler, Float monto, Float montoAdelantado, String tipoPago, LocalDate fechaDePago, LocalDate fehcaDePagoAdelantado) {
+    public Pago(Alquiler alquiler, Float monto, Float montoAdelantado, String tipoPago, LocalDate fechaDePago, LocalDate fechaDePagoAdelantado) {
         this.alquiler = alquiler;
         this.monto = monto;
         this.montoAdelantado = montoAdelantado;
         this.tipoPago = tipoPago;
         this.fechaDePago = fechaDePago;
-        this.fehcaDePagoAdelantado = fehcaDePagoAdelantado;
+        this.fechaDePagoAdelantado = fechaDePagoAdelantado;
     }
 
-    public Pago(Integer idPago, Alquiler alquiler, Float monto, Float montoAdelantado, String tipoPago, LocalDate fechaDePago, LocalDate fehcaDePagoAdelantado) {
+    public Pago(Integer idPago, Alquiler alquiler, Float monto, Float montoAdelantado, String tipoPago, LocalDate fechaDePago, LocalDate fechaDePagoAdelantado) {
         this.idPago = idPago;
         this.alquiler = alquiler;
         this.monto = monto;
         this.montoAdelantado = montoAdelantado;
         this.tipoPago = tipoPago;
         this.fechaDePago = fechaDePago;
-        this.fehcaDePagoAdelantado = fehcaDePagoAdelantado;
+        this.fechaDePagoAdelantado = fechaDePagoAdelantado;
     }
 
     public Integer getIdPago() {
@@ -91,12 +95,12 @@ public class Pago {
         this.fechaDePago = fechaDePago;
     }
 
-    public LocalDate getFehcaDePagoAdelantado() {
-        return fehcaDePagoAdelantado;
+    public LocalDate getfechaDePagoAdelantado() {
+        return fechaDePagoAdelantado;
     }
 
-    public void setFehcaDePagoAdelantado(LocalDate fehcaDePagoAdelantado) {
-        this.fehcaDePagoAdelantado = fehcaDePagoAdelantado;
+    public void setfechaDePagoAdelantado(LocalDate fechaDePagoAdelantado) {
+        this.fechaDePagoAdelantado = fechaDePagoAdelantado;
     }
 
     @Override
@@ -108,7 +112,7 @@ public class Pago {
                 ", montoAdelantado=" + montoAdelantado +
                 ", tipoPago='" + tipoPago + '\'' +
                 ", fechaDePago=" + fechaDePago +
-                ", fehcaDePagoAdelantado=" + fehcaDePagoAdelantado +
+                ", fehcaDePagoAdelantado=" + fechaDePagoAdelantado +
                 '}';
     }
 }

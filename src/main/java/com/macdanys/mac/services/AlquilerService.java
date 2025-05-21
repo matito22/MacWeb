@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.macdanys.mac.entitys.Alquiler;
 import com.macdanys.mac.entitys.Estado;
 import com.macdanys.mac.repositories.AlquilerDAO;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AlquilerService {
   @Autowired
     private AlquilerDAO alquilerDao;
@@ -19,8 +21,8 @@ public class AlquilerService {
         return alquilerDao.findAll();
     }
 
-    public List<Alquiler>findByFechaOEstado(LocalDate desde, LocalDate hasta,Estado estado){
-        return alquilerDao.findByFechaOEstado(desde,hasta,estado);
+    public List<Alquiler>findByFechaComienzoBetweenOrEstado(LocalDate desde, LocalDate hasta,Estado estado){
+        return alquilerDao.findByFechaComienzoBetweenOrEstado(desde,hasta,estado);
     }
     
 

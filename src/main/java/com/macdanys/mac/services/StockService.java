@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.macdanys.mac.entitys.Stock;
 
 import com.macdanys.mac.repositories.StockDAO;
+import org.springframework.stereotype.Service;
 
+@Service
 public class StockService {
     @Autowired
     private StockDAO StockDAO;

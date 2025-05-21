@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.macdanys.mac.entitys.Proveedor;
 
 import com.macdanys.mac.repositories.ProveedorDAO;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ProveedorService {
  @Autowired
     private ProveedorDAO ProveedorDAO;

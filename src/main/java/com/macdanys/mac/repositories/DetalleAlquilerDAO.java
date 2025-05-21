@@ -6,7 +6,7 @@ import com.macdanys.mac.entitys.*;
 
 public interface DetalleAlquilerDAO extends JpaRepository<DetalleAlquiler,Integer> {
 
-    List<DetalleAlquiler> findBtDetalleAlquilers(int idAlquiler);
+   
 } 
 
    

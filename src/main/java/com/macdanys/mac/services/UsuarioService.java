@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.macdanys.mac.entitys.Usuario;
 
 import com.macdanys.mac.repositories.UsuarioDAO;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UsuarioService {
  @Autowired
     private UsuarioDAO UsuarioDAO;

@@ -11,7 +11,7 @@ public interface VajillaDAO extends JpaRepository<Vajilla,Integer> {
 
     public Vajilla findByTipoDeVajilla(TipoDeVajilla tipoDeVajilla);
 
-    public List<Vajilla> traerListaVajilla();
+    
 } 
    
     

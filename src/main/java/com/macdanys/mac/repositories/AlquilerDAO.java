@@ -9,6 +9,6 @@ import com.macdanys.mac.entitys.*;
 public interface AlquilerDAO extends JpaRepository<Alquiler,Integer> {
 
     List<Alquiler> findByEstado(Estado estado);
-    List<Alquiler> findByFechaOEstado(LocalDate desde,LocalDate hasta,Estado estado);
+    List<Alquiler> findByFechaComienzoBetweenOrEstado(LocalDate desde,LocalDate hasta,Estado estado);
     
 } 

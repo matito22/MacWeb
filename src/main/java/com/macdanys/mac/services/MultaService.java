@@ -8,7 +8,9 @@ import com.macdanys.mac.entitys.InventarioMovimientos;
 import com.macdanys.mac.entitys.Multa;
 import com.macdanys.mac.repositories.MultaDAO;
 
+import org.springframework.stereotype.Service;
 
+@Service
 public class MultaService {
      @Autowired
     private MultaDAO multaDAO;

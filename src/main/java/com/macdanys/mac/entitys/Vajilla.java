@@ -1,5 +1,6 @@
 package com.macdanys.mac.entitys;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,10 +17,13 @@ public class Vajilla {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idVajilla;
 
-
+    @Column(name = "modelo")
     private String modelo;
+    @Column(name = "color")
     private String color;
+    @Column(name = "tamaño")
     private String tamaño;
+    @Column(name = "precio_individual")
     private Float precioIndividual;
 
     @OneToOne

@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.macdanys.mac.entitys.Cliente;
 import com.macdanys.mac.repositories.ClienteDAO;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ClienteService {
 
     @Autowired
@@ -20,8 +22,8 @@ public class ClienteService {
         return clienteDao.findById(id);
     }
 
-    public List<Cliente> traerPorNombreYApellido(String nombre,String apellido) {
-        return clienteDao.findByNombClientes(nombre, apellido);
+    public List<Cliente> findByNombreAndApellido(String nombre,String apellido) {
+        return clienteDao.findByNombreAndApellido(nombre, apellido);
     }
 
     public Cliente crearCliente (Cliente cliente) {

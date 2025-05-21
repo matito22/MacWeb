@@ -1,5 +1,6 @@
 package com.macdanys.mac.entitys;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -16,11 +17,14 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUsuario;
 
+    @Column(name = "nombre_de_usuario")
     private String nombreDeUsuario;
+
     private String password;
 
 
     @Enumerated(EnumType.STRING)//Convierte el enum estado, a String en la BD
+    @Column(name = "tipo_de_usuario")
     private TipoDeUsuario tipoDeUsuario;
 
 

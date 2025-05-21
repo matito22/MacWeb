@@ -26,7 +26,7 @@ public class AlquileresActivosController {
         List<Alquiler> alquileres;
 
         if (desde != null && hasta != null) {
-            alquileres = alquilerService.findByFechaOEstado(desde, hasta, Estado.ACTIVO);
+            alquileres = alquilerService.findByFechaComienzoBetweenOrEstado(desde, hasta, Estado.ACTIVO);
         } else {
             alquileres = alquilerService.traerPorEstado(Estado.ACTIVO);
         }

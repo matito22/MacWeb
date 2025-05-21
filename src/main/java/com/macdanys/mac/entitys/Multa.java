@@ -11,8 +11,9 @@ public class Multa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMulta;
-
+    @Column(name="monto")
     private Float monto;
+    @Column(name="fecha")
     private LocalDate fecha;
 
     @OneToOne

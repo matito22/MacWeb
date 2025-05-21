@@ -8,7 +8,9 @@ import com.macdanys.mac.entitys.TipoDeVajilla;
 
 import com.macdanys.mac.repositories.TipoDeVajillaDAO;
 
+import org.springframework.stereotype.Service;
 
+@Service
 public class TipoDeVajillaService {
     @Autowired
     private TipoDeVajillaDAO TipoDeVajillaDAO;

@@ -1,5 +1,6 @@
 package com.macdanys.mac.entitys;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,7 +15,7 @@ public class TipoDeVajilla {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTipoDeVajilla;
 
-    
+    @Column(name = "nombre_tipo_de_vajilla")
     private String nombreTipoDeVajilla;
 
 

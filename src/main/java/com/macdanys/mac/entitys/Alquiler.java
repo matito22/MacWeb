@@ -15,6 +15,7 @@ public class Alquiler implements Serializable {
 
     @Id//Marca el campo idAlquiler como la clave primaria de la tabla.
     @GeneratedValue(strategy = GenerationType.IDENTITY)//Indica que se autoincrementa el valor por la BD
+    @Column(name = "idAlquiler")
     private Integer idAlquiler;
 
     @Column(name = "fecha_comienzo")
@@ -32,7 +33,7 @@ public class Alquiler implements Serializable {
     @JoinColumn(name = "cliente_id")// Indica que la columna cliente_id sera clave foranea
     private Cliente cliente;
     
-    @Column(nullable = false)
+    @Column(name="dias_alquiler",nullable = false)
     private Integer diasAlquiler;
     @Column(name = "costo_delivery")
     private Float costoDelivery;

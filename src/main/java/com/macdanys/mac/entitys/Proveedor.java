@@ -11,8 +11,11 @@ public class Proveedor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idproveedor;
 
+    @Column(name = "nombre")
     private String nombre;
+    @Column(name = "contacto")
     private String contacto;
+    @Column(name = "costo_adquisicion")
     private Float costoAdquisicion;
 
     public Proveedor() {}

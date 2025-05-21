@@ -12,17 +12,27 @@ public class HistorialAlquileres {
     @GeneratedValue(strategy = GenerationType.IDENTITY)//Indica que se autoincrementa el valor por la BD
     private Integer idHistorialAlquiler;
 
-    
+    @Column(name="alquiler_id")
     private Integer idAlquiler;
+    @Column(name="nombre_cliente")
     private String nombreCliente;
+    @Column(name="apellido_cliente")
     private String apellidoCliente;
+    @Column(name="fecha_comienzo")
     private LocalDate fechaComienzo;
+    @Column(name="fecha_finalizacion")
     private LocalDate fechaFinalizacion;
+    @Column(name="hora_comienzo")
     private LocalTime horaComienzo;
+    @Column(name="hora_finalizacion")
     private LocalTime horaFinalizacion;
+    @Column(name="dias_alquiler")
     private Integer diasAlquiler;
+    @Column(name="costo_delivery")
     private Float costoDelivery;
+    @Column(name="total_alquiler")
     private float totalAlquiler;
+    @Column(name="multa")
     private float multa;
 
     public HistorialAlquileres() {}

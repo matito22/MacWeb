@@ -5,7 +5,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.macdanys.mac.entitys.GastoExterno;
 import com.macdanys.mac.repositories.GastoExternoDAO;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GastoExternoService {
       @Autowired
     private GastoExternoDAO gastoExternoDAO;

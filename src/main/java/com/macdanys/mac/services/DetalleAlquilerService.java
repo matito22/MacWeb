@@ -5,7 +5,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.macdanys.mac.entitys.DetalleAlquiler;
 import com.macdanys.mac.repositories.DetalleAlquilerDAO;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DetalleAlquilerService {
       @Autowired
     private DetalleAlquilerDAO detalleAlquilerDAO;

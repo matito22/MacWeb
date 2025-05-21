@@ -9,6 +9,8 @@ public class Stock {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idStock;
+
+    @Column(name = "cantidad_disponible")
     private Integer cantidadDisponible;
 
 
