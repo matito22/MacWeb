@@ -25,12 +25,15 @@ public class UsuarioService {
 
 
     //Valida si el usuario existe, Mas adelante se agregara si es administrador o usuario comun para habilitar otras opciones en caso que sea administrador
-     public boolean validarUsuario(Usuario usuario){
-    
-        if(!usuario.getPassword().equals(usuario.getPassword())){
-            throw new RuntimeException("Clave incorrecta");
+     public boolean validarUsuario(String nombreDeUsuario,String password){
+        Optional  usuarioOptional=UsuarioDAO.findByNombreDeUsuario(nombreDeUsuario);
+        
+        if(usuarioOptional.isPresent()){
+            Usuario usuario=(Usuario)usuarioOptional.get();
+            return usuario.getPassword().equals(password);
+        }else{
+            return false;
         }
-        return true;
     }
 
     public Optional<Usuario> traerPorId(Integer id) {

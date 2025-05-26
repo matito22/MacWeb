@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/usuarios") // ruta base
 public class LoginController {
-
+    @Autowired
     UsuarioService usuarioService;
 
 
@@ -28,15 +28,14 @@ public class LoginController {
         return usuarioService.cUsuario(usuario);
     }
     
-     @PostMapping("/validar")
-    public ResponseEntity<String> validarUsuario(@RequestBody Usuario usuario){
-        boolean valido = usuarioService.validarUsuario(usuario);
-        if(valido){
-            return ResponseEntity.ok("Usuario válido");
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario o clave incorrecta");
-        }
+   @PostMapping("/validar")
+    public ResponseEntity<String> validarUsuario(@RequestBody Usuario usuario) {
+    boolean resultado = usuarioService.validarUsuario(usuario.getNombreDeUsuario(), usuario.getPassword());
+    if (resultado) {
+        return ResponseEntity.ok("Usuario válido");
+    } else {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario o clave incorrecta");
     }
-
+}
 
 }
