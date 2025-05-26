@@ -23,13 +23,19 @@ public class LoginController {
     UsuarioService usuarioService;
 
 
-     @PostMapping("/crear")
-    public Usuario crearUsuarioController(@RequestBody Usuario usuario){
-        return usuarioService.cUsuario(usuario);
+   @PostMapping("/crear")
+    public ResponseEntity<?> crearUsuarioController(@RequestBody Usuario usuario){
+    try {
+        Usuario nuevoUsuario = usuarioService.cUsuario(usuario);
+        return ResponseEntity.status(HttpStatus.CREATED).body(nuevoUsuario); // 201 Created
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                             .body("Error al crear el usuario: ");
     }
+}
     
    @PostMapping("/validar")
-    public ResponseEntity<String> validarUsuario(@RequestBody Usuario usuario) {
+    public ResponseEntity<String> validarUsuario(@RequestBody Usuario usuario) {// request body, transforma lo que le paso en un usuario para chequearlo en formato json
     boolean resultado = usuarioService.validarUsuario(usuario.getNombreDeUsuario(), usuario.getPassword());
     if (resultado) {
         return ResponseEntity.ok("Usuario válido");
@@ -37,5 +43,7 @@ public class LoginController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario o clave incorrecta");
     }
 }
+
+    
 
 }
