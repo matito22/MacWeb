@@ -19,62 +19,28 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
 
 
 @RestController
-@RequestMapping("/api/usuarios") // ruta base
+@RequestMapping("/api/login") // ruta base
 public class LoginController {
     @Autowired
     UsuarioService usuarioService;
 
-
-   @PostMapping("/crear")
-    public ResponseEntity<?> crearUsuarioController(@RequestBody Usuario usuario){
-    try {
-        Usuario nuevoUsuario = usuarioService.cUsuario(usuario);
-        return ResponseEntity.status(HttpStatus.CREATED).body(nuevoUsuario); // 201 Created
-    } catch (Exception e) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                             .body("Error al crear el usuario: ");
-    }
-}
-    
-   @PostMapping("/validar")
-    public ResponseEntity<String> validarUsuario(@RequestBody Usuario usuario) {// request body, transforma lo que le paso en un usuario para chequearlo en formato json
+    //Login exitoso
+    @PostMapping("/validar")
+    public ResponseEntity<String> validarLogin(@RequestBody Usuario usuario) {// request body, transforma lo que le paso en un usuario para chequearlo en formato json
     boolean resultado = usuarioService.validarUsuario(usuario.getNombreDeUsuario(), usuario.getPassword());
     if (resultado) {
         return ResponseEntity.ok("Usuario válido");
     } else {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario o clave incorrecta");
     }
-}
+    }
 
-   @PostMapping("/modificar/{idUsuario}")
-   public ResponseEntity<?> modificarUsuario(@PathVariable Integer idUsuario,@RequestBody UsuarioDTO usuarioDTO) {
-      boolean resultado= usuarioService.modificarUsuario(idUsuario, usuarioDTO);
-      if(resultado){
-        
-        return ResponseEntity.ok("Usuario Modificado");
-      }else{
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario inexistente");
-      }
-   }
-   
-   @PostMapping("/eliminar/{idUsuario}")
-   public ResponseEntity<?> eliminarUsuario(@PathVariable Integer idUsuario) {
-       boolean resultado=usuarioService.eliminarUsuario(idUsuario);
-       if(resultado){
-        return ResponseEntity.ok("Usuario Eliminado");
-       }
-       else{
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario inexistente");
-       }
-       
-   }
-   
-    
+
+
+
+
 
 }
