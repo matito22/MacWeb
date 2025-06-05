@@ -30,7 +30,11 @@ public class UsuariosController {
     //CREAR USUARIO POR POSTMAN FUNCIONA
 
     @PostMapping("/crearUsuario")
-    public ResponseEntity<?> crearUsuario(@RequestParam String nombreDeUsuario , @RequestParam String password, @RequestParam TipoDeUsuario tipoDeUsuario) {
+    public ResponseEntity<?> crearUsuario(@RequestBody UsuarioDTO usuarioDTO) {
+
+        String nombreDeUsuario = usuarioDTO.getNombreDeUsuario();
+        String password = usuarioDTO.getPassword();
+        TipoDeUsuario tipoDeUsuario = usuarioDTO.getTipoDeUsuario();
 
         if( nombreDeUsuario.isBlank() || password.isBlank() || tipoDeUsuario==null){
               return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Campos vacios");

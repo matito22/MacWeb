@@ -1,11 +1,13 @@
 package com.macdanys.mac.controllers;
 import com.macdanys.mac.dto.UsuarioDTO;
+import com.macdanys.mac.dto.VajillaDTO;
 import com.macdanys.mac.entitys.Alquiler;
 import com.macdanys.mac.entitys.Estado;
 import com.macdanys.mac.entitys.TipoDeUsuario;
 import com.macdanys.mac.entitys.TipoDeVajilla;
 import com.macdanys.mac.entitys.Vajilla;
 import com.macdanys.mac.services.AlquilerService;
+import com.macdanys.mac.services.TipoDeVajillaService;
 import com.macdanys.mac.services.UsuarioService;
 import com.macdanys.mac.services.VajillaService;
 
@@ -31,27 +33,48 @@ public class CrearVajillaController {
 
     @Autowired
     VajillaService vajillaService;
+    @Autowired
+    TipoDeVajillaService tipoDeVajillaService;
 
 
     @PostMapping("/crearVajilla")
-    public ResponseEntity<?>crearVajilla(@RequestParam String modelo,@RequestParam String color,@RequestParam String tamaño,@RequestParam Float precioIndividual,@RequestParam TipoDeVajilla tipoDeVajilla) {
-       
-        if(modelo.isBlank() || color.isBlank() || tamaño.isBlank()){
+    public ResponseEntity<?>crearVajilla(@RequestBody VajillaDTO vajillaDTO) {
+       String modelo=vajillaDTO.getModelo();
+       String color=vajillaDTO.getColor();
+       Float precioIndividual=vajillaDTO.getPrecioIndividual();
+       String tamaño=vajillaDTO.getTamaño();
+      
+       Optional<TipoDeVajilla> tOptional=tipoDeVajillaService.traerPorId(vajillaDTO.getidTipoDeVajilla());
+
+
+
+
+        if(modelo.isBlank()){
             modelo=null;
+        }
+
+        if(color.isBlank()){
             color=null;
+        }
+        if(tamaño.isBlank()){
             tamaño=null;
         }
-        if(precioIndividual.isNaN() || tipoDeVajilla == null){
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Precio o tipo de vajilla incorrecto");
+
+
+        if(!tOptional.isPresent()){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Tipo de vajilla incorrecto");
+        }
+        if(precioIndividual == null || precioIndividual.isNaN()){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("El precio no puede estar vacio");
         }
         
         
-        Optional<Vajilla> usOptional=vajillaService.findByTipoDeVajilla(tipoDeVajilla);
+        Optional<Vajilla> usOptional=vajillaService.findByTipoDeVajilla(tOptional.get());
         if(usOptional.isPresent()){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Ya existe este tipo de vajilla");
         }
 
-        Vajilla vajilla=new Vajilla (modelo,color,precioIndividual,tamaño,tipoDeVajilla);
+        Vajilla vajilla=new Vajilla (modelo,color,precioIndividual,tamaño,tOptional.get());
         vajillaService.cVajilla(vajilla);
         return ResponseEntity.ok().body("Vajilla agregada");
 
