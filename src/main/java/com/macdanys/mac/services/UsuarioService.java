@@ -79,6 +79,9 @@ public class UsuarioService {
         return usuarioDAO.findByNombreDeUsuario(nombreDeUsuario);
     }
 
+    public Optional<Usuario> findById(Integer id){
+         return usuarioDAO.findById(id); 
+    }
 
     public Usuario cUsuario (Usuario Usuario) {
         return usuarioDAO.save(Usuario);

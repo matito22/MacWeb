@@ -11,6 +11,6 @@ import java.util.List;
 public interface UsuarioDAO extends JpaRepository<Usuario,Integer>{
 
     Optional<Usuario> findByNombreDeUsuario(String nombreDeUsuario);
-  
+    Optional<Usuario> findById(Integer id);
 
 } 

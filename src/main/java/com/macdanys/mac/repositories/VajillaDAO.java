@@ -5,11 +5,12 @@ import com.macdanys.mac.entitys.Usuario;
 import com.macdanys.mac.entitys.TipoDeVajilla;
 import com.macdanys.mac.entitys.Vajilla;
 import java.util.List;
+import java.util.Optional;
 
 
 public interface VajillaDAO extends JpaRepository<Vajilla,Integer> {
 
-    public Vajilla findByTipoDeVajilla(TipoDeVajilla tipoDeVajilla);
+    public Optional<Vajilla> findByTipoDeVajilla(TipoDeVajilla tipoDeVajilla);
 
     
 } 
